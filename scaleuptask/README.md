@@ -56,7 +56,7 @@ Request Type = POST
 Complete Url : http://shamsher.southindia.cloudapp.azure.com:8080/getUsersFromFirstName?first_name=thorn
 
 
-* #### Get user from first Name
+* #### Get user from Email
 
 END_POINT = /getUserFormEmail
 

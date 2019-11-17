@@ -16,9 +16,42 @@ Following operations are performed.
 This project contains two application.properties file which is prod and test which is loaded on
 basis of Spring profile selected either passed through maven arugment or placed in application.properties.
 
-
+***Base_URL = http://shamsher.southindia.cloudapp.azure.com:8080/***
 #### Api End points Details 
-1) Create User
-***Base_URL = http://****
+* #### Create User
 
-END_POINT = /create User
+
+END_POINT = /createUser
+
+Complete Url : http://shamsher.southindia.cloudapp.azure.com:8080/createUser
+
+Payload : 
+{
+    "firstName":"David",
+    "lastName":"Thorn",
+    "emailId":"davi@demo.com"
+}
+
+* #### Delete user 
+
+END_POINT = /deleteUser
+
+Request Type = DELETE
+
+Compelete Url :http://shamsher.southindia.cloudapp.azure.com:8080/deleteUser?email_id=david@demo.com
+
+* #### Get User From Last Name
+END_POINT = /getUsersFromLastName
+
+Request Type = POST
+
+Complete Url : http://shamsher.southindia.cloudapp.azure.com:8080/getUsersFromLastName?last_name=thorn
+
+* #### Get user from first Name
+
+END_POINT = /getUsersFromFirstName
+
+Request Type = POST
+
+Complete Url : http://shamsher.southindia.cloudapp.azure.com:8080/getUsersFromFirstName?first_name=thorn
+

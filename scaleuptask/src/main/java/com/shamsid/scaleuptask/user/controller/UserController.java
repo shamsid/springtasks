@@ -1,6 +1,8 @@
 package com.shamsid.scaleuptask.user.controller;
 
 import com.shamsid.scaleuptask.user.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,23 +21,31 @@ import java.util.List;
 public class UserController {
 
 
+    private Logger logger = LoggerFactory.getLogger(UserController.class);
+
     @Autowired
     UserService userService;
 
     @PostMapping("/createUser")
-    public void createUser(@NotNull @RequestBody User user){
+    public void createUser(@NotNull @RequestBody User user,HttpServletRequest request,HttpServletResponse response){
+
+        logger.info(request.getRequestURL().toString());
+
         userService.saveUser(user);
 
     }
 
     @PostMapping("/getAllUser")
-    public List<User> getAllUser(){
+    public List<User> getAllUser(HttpServletRequest request,HttpServletResponse response){
+        logger.info(request.getRequestURL().toString());
         return userService.getAllUser();
    }
 
    @PostMapping("/getUserFormEmail")
    public User getUserFromEmail(@RequestParam(name = "email_id") String emailId,HttpServletRequest request,
                                 HttpServletResponse response) throws IOException {
+
+       logger.info(request.getRequestURL().toString());
 
         User user = userService.getUserFromEmail(emailId);
 
@@ -52,6 +62,7 @@ public class UserController {
    public List<User> getUserFromLastName(@RequestParam(name = "last_name") String lastName, HttpServletRequest request,
                                    HttpServletResponse response){
 
+       logger.info(request.getRequestURL().toString());
         if(lastName!=null){
             response.setStatus(HttpServletResponse.SC_OK);
             return userService.getUserFromLastName(lastName);
@@ -66,6 +77,7 @@ public class UserController {
     public List<User> getUsersFromFirstName(@RequestParam(name = "first_name") String firstName, HttpServletRequest request,
                                                        HttpServletResponse response){
 
+        logger.info(request.getRequestURL().toString());
         if(firstName!=null){
             response.setStatus(HttpServletResponse.SC_OK);
             return userService.getUserFromFirstName(firstName);
@@ -80,6 +92,7 @@ public class UserController {
     public HashMap deleteUser(@RequestParam(name = "email_id") String emailId, HttpServletRequest request,
                               HttpServletResponse response){
 
+        logger.info(request.getRequestURL().toString());
         HashMap hashMap = new HashMap();
 
         if(emailId!=null) {
